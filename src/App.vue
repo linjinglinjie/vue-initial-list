@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <vue-initial-list :options="options"></vue-initial-list>
+    <vue-initail-list :options="options"/>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: "app",
-  data() {
+  name: 'app',
+  data () {
     return {
       options: [
         {
@@ -38,10 +37,10 @@ export default {
         }
       ]
     };
-  },
-  methods: {}
-};
+    }
+  }
 </script>
 
-<style lang="scss">
+<style>
+
 </style>

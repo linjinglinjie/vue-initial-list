@@ -1,11 +1,11 @@
-import vueInitialList from './vue-initial-list.vue';
+import VueInitailListComponent from './vue-initail-list.vue';
 
-const initialList = {
+const VueInitailList = {
     install(Vue, options) {
-        Vue.component(vueInitialList.name, vueInitialList);
+        Vue.component(VueInitailListComponent.name, VueInitailListComponent);
     }
 }
 if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(initialList);
+    window.Vue.use(VueInitailList);
 }
-export default initialList;
+export default VueInitailList;
