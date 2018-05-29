@@ -9,7 +9,10 @@
       </div>
   </ul>
   <div class="shortcut">
-    <p class="item" v-for="(letter,k) in letters" :key="k">{{letter}}</p>
+    <p class="item" v-for="(letter,k) in letters" :key="k">
+{{letter}}
+    </p>
+      
   </div>
 </div>
 </template>
@@ -40,13 +43,14 @@ export default {
     for (let letter of this.letters) {
       this.sortedData.push({ name: letter });
     }
-    this.sortedData.map(item => {
+    this.sortedData = this.sortedData.filter(item => {
+      item.values = [];
       pinyinData.map(jtem => {
         if (item.name == jtem.initials) {
-          item.values = [];
           item.values.push(jtem.name);
         }
       });
+      return item.values.length > 0;
     });
   },
   mounted() {
