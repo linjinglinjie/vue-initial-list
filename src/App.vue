@@ -1,20 +1,15 @@
 <template>
   <div id="app">
-    <vue-initail-list :options="options"/>
+    <vue-initail-list :options="options" @change="cb"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
-  data () {
+  name: "app",
+  data() {
     return {
       options: [
-        {
-          name: "北京市",
-          tags: "BEIJING,北京市",
-          cityid: 1
-        },
         {
           name: "上海市",
           tags: "SHANGHAI,上海市",
@@ -37,10 +32,14 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    cb(e) {
+      console.log(e);
     }
   }
+};
 </script>
 
 <style>
-
 </style>

@@ -1,20 +1,17 @@
 <template>
-<div>
-  <ul id="vue-initial-list">
-      <div class="wrapper" v-if="item.values" v-for="(item,i) in sortedData" :key="i">
-        <p class="title" >{{item.name}}</p>
+  <div id="vue-initial-list">
+    <div class="wrapper" v-for="(item,i) in sortedData" :key="i">
+        <p class="title">{{item.initials}}</p>
         <ul class="content">
-          <li v-for="(jtem,j) in item.values" :key="j">{{jtem}}</li>
+          <li v-for="(jtem,j) in item.detail" :key="j" @click.stop="listItemClick(jtem)">{{jtem.name}}</li>
         </ul>
       </div>
-  </ul>
-  <div class="shortcut">
-    <p class="item" v-for="(letter,k) in letters" :key="k">
-{{letter}}
-    </p>
-      
-  </div>
-</div>
+      <div class="shortcut">
+        <p class="item" v-for="(letter,k) in letters" :key="k">
+          {{letter}}
+        </p>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -35,27 +32,38 @@ export default {
     };
   },
   created() {
+    // todo 传入的汉字属性名必须为name
     const pinyinData = this.options.map(item => ({
-      name: item.name,
+      detail: item,
       initials: pinyin(item.name, { style: pinyin.STYLE_FIRST_LETTER })[0][0]
     }));
+    // todo 生成26个字母的数组对象
     this.letters = "abcdefghjklmnopqrstwxyz".split("");
     for (let letter of this.letters) {
-      this.sortedData.push({ name: letter });
+      this.sortedData.push({ initials: letter });
     }
+    // todo 过滤掉没有信息的字母对象
     this.sortedData = this.sortedData.filter(item => {
-      item.values = [];
+      item.detail = [];
       pinyinData.map(jtem => {
-        if (item.name == jtem.initials) {
-          item.values.push(jtem.name);
+        if (item.initials === jtem.initials) {
+          item.detail.push(jtem.detail);
         }
       });
-      return item.values.length > 0;
+      return item.detail.length > 0;
     });
   },
   mounted() {
-    let wrapper = document.querySelector(".wrapper");
-    let scroll = new BScroll(wrapper);
+    let wrapper = document.querySelector("#vue-initial-list");
+    let scroll = new BScroll(wrapper, { click: true });
+  },
+  methods: {
+    listItemClick(jtem) {
+      this.$emit("change", jtem);
+    }
+  },
+  beforeDestroy() {
+    this.$off("change");
   }
 };
 </script>
