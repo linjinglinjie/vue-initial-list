@@ -60,10 +60,12 @@ export default {
       let bscrollDom = this.$refs.bscroll;
       this.aBScroll = new BScroll(bscrollDom, { click: true, bounce: false });
     });
+
     const letters = document.querySelector(".right-nav").children;
     const initials = document.querySelectorAll(".initial-list");
     for (let i = 0; i < letters.length; i++) {
       letters[i].index = i;
+      // 点击字母表跳转
       letters[i].onclick = function() {
         if (this.index === 26) {
           //回底部
@@ -73,6 +75,15 @@ export default {
         self.aBScroll.scrollToElement(`#${letter}`);
       };
     }
+    // 触摸字母表跳转
+    document.querySelector(".right-nav").addEventListener("touchmove", e => {
+      //根据elementFromPoint实时获取触摸dom
+      e = e || window.event;
+      var touch = e.changedTouches[0];
+      var ele = document.elementFromPoint(touch.pageX, touch.pageY);
+      let letter = ele.innerText;
+      self.aBScroll.scrollToElement(`#${letter}`);
+    });
   },
   methods: {
     listItemClick(jtem) {
@@ -81,6 +92,7 @@ export default {
   },
   beforeDestroy() {
     this.$off("change");
+    this.aBScroll.destroy();
   }
 };
 </script>
