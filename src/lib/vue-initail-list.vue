@@ -1,17 +1,17 @@
 <template>
-  <div id="vue-initial-list">
-    <div class="wrapper" v-for="(item,i) in sortedData" :key="i">
-        <p class="title">{{item.initials}}</p>
-        <ul class="content">
-          <li v-for="(jtem,j) in item.detail" :key="j" @click.stop="listItemClick(jtem)">{{jtem.name}}</li>
-        </ul>
-      </div>
-      <div class="shortcut">
-        <p class="item" v-for="(letter,k) in letters" :key="k">
-          {{letter}}
-        </p>
+  <div id="vue-initial-list" ref="bscroll">
+    <div>
+      <div class="wrapper" v-for="(item,i) in sortedData" :key="i" :id="item.initials">
+          <p class="initial-list">{{item.initials}}</p>
+          <ul class="content">
+            <li v-for="(jtem,j) in item.detail" :key="j" @click.stop="listItemClick(jtem)">{{jtem.name}}</li>
+          </ul>
       </div>
     </div>
+    <div class="right-nav">
+      <p class="item" v-for="(letter,k) in letters" :key="k">{{letter}}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -27,6 +27,7 @@ export default {
   },
   data() {
     return {
+      aBScroll: null,
       sortedData: [],
       letters: []
     };
@@ -38,7 +39,7 @@ export default {
       initials: pinyin(item.name, { style: pinyin.STYLE_FIRST_LETTER })[0][0]
     }));
     // todo 生成26个字母的数组对象
-    this.letters = "abcdefghjklmnopqrstwxyz".split("");
+    this.letters = "abcdefghijklmnopqrstuvwxyz".split("");
     for (let letter of this.letters) {
       this.sortedData.push({ initials: letter });
     }
@@ -54,8 +55,24 @@ export default {
     });
   },
   mounted() {
-    let wrapper = document.querySelector("#vue-initial-list");
-    let scroll = new BScroll(wrapper, { click: true });
+    var self = this;
+    this.$nextTick(() => {
+      let bscrollDom = this.$refs.bscroll;
+      this.aBScroll = new BScroll(bscrollDom, { click: true, bounce: false });
+    });
+    const letters = document.querySelector(".right-nav").children;
+    const initials = document.querySelectorAll(".initial-list");
+    for (let i = 0; i < letters.length; i++) {
+      letters[i].index = i;
+      letters[i].onclick = function() {
+        if (this.index === 26) {
+          //回底部
+          document.querySelector("html").scrollIntoView(false);
+        }
+        let letter = this.innerHTML; //点击左侧的字母
+        self.aBScroll.scrollToElement(`#${letter}`);
+      };
+    }
   },
   methods: {
     listItemClick(jtem) {
@@ -76,7 +93,7 @@ export default {
   .wrapper {
     text-align: left;
     font-size: 16px;
-    .title {
+    .initial-list {
       height: 1rem;
       line-height: 1rem;
       background-color: #f5f5f5;
@@ -94,8 +111,8 @@ export default {
     }
   }
 }
-.shortcut {
-  position: absolute;
+.right-nav {
+  position: fixed;
   z-index: 1;
   right: 0;
   top: 50%;
@@ -106,7 +123,6 @@ export default {
     color: #fa8919;
     height: 0.5rem;
     width: 1rem;
-    margin: 0.1rem 0;
   }
 }
 </style>
