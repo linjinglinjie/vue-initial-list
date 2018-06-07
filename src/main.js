@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueInitailList from './lib/index'
+import VueInitialList from './lib/index'
 import 'amfe-flexible/index.js'
-Vue.use(VueInitailList)
+Vue.use(VueInitialList)
 new Vue({
   el: '#app',
   render: h => h(App)

@@ -1,6 +1,6 @@
 {
-  "name": "dd",
-  "description": "A Vue.js project",
+  "name": "vue-initial-list",
+  "description": "A componets of vue for contact list and city list",
   "version": "1.0.0",
   "author": "xuexiongjie <xuexiongjie@aliyun.com>",
   "license": "MIT",
@@ -12,6 +12,7 @@
   "dependencies": {
     "amfe-flexible": "^2.2.1",
     "better-scroll": "^1.11.1",
+    "gh-pages": "^1.2.0",
     "pinyin": "^2.8.3",
     "vue": "^2.5.11"
   },

@@ -18,7 +18,7 @@
 var pinyin = require("pinyin");
 import BScroll from "better-scroll";
 export default {
-  name: "vue-initail-list",
+  name: "vue-initial-list",
   props: {
     options: {
       type: Array,

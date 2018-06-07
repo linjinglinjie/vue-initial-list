@@ -3,7 +3,7 @@
 </a>
 
 
-# vue-initail-list
+# vue-initial-list
 
 > If you are looking for a high-performance vue component that supports incoming Chinese data automatically and alphabetically, you are in the right place.
 
@@ -15,23 +15,23 @@
 
 ## Live demos
 
-* [vue-initail-list](#).
+* [vue-initial-list](#).
 
 ## Simple usage
 
 ```
-npm install vue-initail-list or yarn add vue-initail-list
+npm install vue-initial-list or yarn add vue-initial-list
 ```
 
 ```vue
 <template>
     <div>
-        <vue-initail-list :options="options" @change="cb"/>
+        <vue-initial-list :options="options" @change="cb"/>
     </div>
 </template>
 
 <script>
-    import VueInitailList from 'vue-initail-list'
+    import VueInitialList from 'vue-initial-list'
 
     export default {
         data () {
@@ -60,7 +60,7 @@ npm install vue-initail-list or yarn add vue-initail-list
                 ]
             }
         },
-        components: { 'vue-initail-list': VueInitailList }
+        components: { 'vue-initial-list': VueInitialList }
     }
 </script>
 ```
@@ -77,7 +77,7 @@ npm install vue-initail-list or yarn add vue-initail-list
 
 ## Contributions
 
-Welcome to improve vue-initail-list with any issue, pull request or code review.
+Welcome to improve vue-initial-list with any issue, pull request or code review.
 
 ## Changelogs
 

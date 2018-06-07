@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-initail-list :options="options" @change="cb"/>
+    <vue-initial-list :options="options" @change="cb"/>
   </div>
 </template>
 
