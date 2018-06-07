@@ -24,6 +24,11 @@ npm install vue-initial-list or yarn add vue-initial-list
 ```
 
 ```vue
+// main.js
+import VueInitialList from 'vue-initial-list'
+Vue.use(VueInitialList)
+
+// app.js
 <template>
     <div>
         <vue-initial-list :options="options" @change="cb"/>
@@ -31,8 +36,6 @@ npm install vue-initial-list or yarn add vue-initial-list
 </template>
 
 <script>
-    import VueInitialList from 'vue-initial-list'
-
     export default {
         data () {
             return {
@@ -60,7 +63,6 @@ npm install vue-initial-list or yarn add vue-initial-list
                 ]
             }
         },
-        components: { 'vue-initial-list': VueInitialList }
     }
 </script>
 ```

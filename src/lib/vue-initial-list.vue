@@ -17,6 +17,7 @@
 <script>
 var pinyin = require("pinyin");
 import BScroll from "better-scroll";
+import 'amfe-flexible/index.js'
 export default {
   name: "vue-initial-list",
   props: {
@@ -114,6 +115,7 @@ export default {
     }
     .content {
       li {
+        list-style: none;
         height: 1.3rem;
         line-height: 1.3rem;
         border-bottom: 1px solid #e5e5e5;
