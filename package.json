@@ -4,7 +4,12 @@
   "version": "1.0.0",
   "author": "xuexiongjie <xuexiongjie@aliyun.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
+  "main": "dist/vue-initial-list.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxj95719/vue-initial-list"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
