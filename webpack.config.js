@@ -1,11 +1,16 @@
 var path = require('path')
 var webpack = require('webpack')
 module.exports = {
-  entry: './src/main.js',
+  // entry: './src/main.js',// 开发时打包目录
+  entry: './src/lib/index.js',// 打包插件时打包目录
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    // filename: 'build.js'// 开发时打包文件名
+    filename: 'vue-initial-list.js',// 打包的插件名
+    library:'VueInitialList',// require引入时的模块名
+    libraryTarget: 'umd', //libraryTarget会生成不同umd的代码,可以只是commonjs标准的，也可以是指amd标准的，也可以只是通过script标签引入的。
+    umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
   },
   module: {
     rules: [
