@@ -11,6 +11,11 @@ export default {
     return {
       options: [
         {
+          name: "1",
+          tags: "ANSHAN,鞍山市",
+          cityid: 64
+        },
+        {
           name: "鞍山市",
           tags: "ANSHAN,鞍山市",
           cityid: 64

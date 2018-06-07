@@ -11,13 +11,14 @@
     <div class="right-nav">
       <p class="item" v-for="(letter,k) in letters" :key="k">{{letter}}</p>
     </div>
+    <div class="toast" v-show="isToast">{{toatText}}</div>
   </div>
 </template>
 
 <script>
 var pinyin = require("pinyin");
 import BScroll from "better-scroll";
-import 'amfe-flexible/index.js'
+import "amfe-flexible/index.js";
 export default {
   name: "vue-initial-list",
   props: {
@@ -30,17 +31,21 @@ export default {
     return {
       aBScroll: null,
       sortedData: [],
-      letters: []
+      letters: [],
+      isToast: false,
+      toatText: ""
     };
   },
   created() {
-    // todo 传入的汉字属性名必须为name
+    // 传入的汉字属性名必须为name
     const pinyinData = this.options.map(item => ({
       detail: item,
-      initials: pinyin(item.name, { style: pinyin.STYLE_FIRST_LETTER })[0][0]
+      initials: pinyin(item.name, {
+        style: pinyin.STYLE_FIRST_LETTER
+      })[0][0].toUpperCase()
     }));
     // todo 生成26个字母的数组对象
-    this.letters = "abcdefghijklmnopqrstuvwxyz".split("");
+    this.letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     for (let letter of this.letters) {
       this.sortedData.push({ initials: letter });
     }
@@ -68,11 +73,17 @@ export default {
       letters[i].index = i;
       // 点击字母表跳转
       letters[i].onclick = function() {
-        if (this.index === 26) {
-          //回底部
-          document.querySelector("html").scrollIntoView(false);
-        }
+        // if (this.index === 26) {
+        //   //回底部
+        //   document.querySelector("html").scrollIntoView(false);
+        // }
         let letter = this.innerHTML; //点击左侧的字母
+        self.isToast = true;
+        self.toatText = letter;
+        clearTimeout("t");
+        const t = setTimeout(() => {
+          self.isToast = false;
+        }, 1000);
         self.aBScroll.scrollToElement(`#${letter}`);
       };
     }
@@ -124,19 +135,34 @@ export default {
       }
     }
   }
-}
-.right-nav {
-  position: fixed;
-  z-index: 1;
-  right: 0;
-  top: 50%;
-  margin-top: -7.0667rem;
-  .item {
+  .right-nav {
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 50%;
+    margin-top: -7.0667rem;
+    .item {
+      text-align: center;
+      font-size: 14px;
+      color: #fa8919;
+      height: 0.5rem;
+      width: 1rem;
+    }
+  }
+  .toast {
+    width: 4rem;
+    height: 3rem;
+    line-height: 3rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -1.5rem;
+    margin-left: -2rem;
     text-align: center;
-    font-size: 14px;
-    color: #fa8919;
-    height: 0.5rem;
-    width: 1rem;
+    color: #fff;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    z-index: 99999;
+    border-radius: 5px;
   }
 }
 </style>
