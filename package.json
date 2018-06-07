@@ -5,7 +5,7 @@
   "author": "xuexiongjie <xuexiongjie@aliyun.com>",
   "license": "MIT",
   "private": false,
-  "main": "dist/vue-initial-list.js",
+  "main": "dist/vue-initial-list.js", 
   "repository": {
     "type": "git",
     "url": "https://github.com/xxj95719/vue-initial-list"
