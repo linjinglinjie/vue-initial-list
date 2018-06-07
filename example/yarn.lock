@@ -4552,9 +4552,9 @@ vue-hot-reload-api@^2.2.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
-vue-initial-list@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/vue-initial-list/-/vue-initial-list-1.0.0.tgz#0f4b7a749150f8f1713dd2496d4e183f3be7b56f"
+vue-initial-list@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/vue-initial-list/-/vue-initial-list-1.0.1.tgz#74a81d93ceb128282bb24aab3fa23a9a763684fe"
   dependencies:
     amfe-flexible "^2.2.1"
     better-scroll "^1.11.1"

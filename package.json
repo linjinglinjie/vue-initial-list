@@ -1,7 +1,7 @@
 {
   "name": "vue-initial-list",
   "description": "A componets of vue for contact list and city list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "xuexiongjie <xuexiongjie@aliyun.com>",
   "license": "MIT",
   "private": false,
